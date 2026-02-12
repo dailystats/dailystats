@@ -234,6 +234,23 @@ footer .foot {
   margin-bottom: 0.5rem;
 }
 
+.footer-dark .footer-link-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-dark .footer-icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.footer-dark .footer-icon-github {
+  width: 1.1em;
+  height: 1.1em;
+}
+
 .footer-dark .footer-doi {
   margin-top: 0.75rem;
   display: flex;
