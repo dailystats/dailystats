@@ -111,12 +111,16 @@
     moonIcon = document.getElementById("moonIcon");
 
     const now = new Date();
+    const maxAllowed = getProblemDate(now);
+    const maxAllowedDay = new Date(maxAllowed.getFullYear(), maxAllowed.getMonth(), maxAllowed.getDate());
+
     const params = new URLSearchParams(location.search);
     const dateParam = params.get("date");
     let problemDate;
     if (dateParam && /^\d{4}-\d{2}-\d{2}$/.test(dateParam)) {
       const [y, m, d] = dateParam.split("-").map(Number);
       problemDate = new Date(y, m - 1, d);
+      if (problemDate > maxAllowedDay) problemDate = new Date(maxAllowedDay);
     } else {
       problemDate = getProblemDate(now);
     }
@@ -148,8 +152,8 @@
       }
     });
 
-    if (!dateParam) {
-      const url = new URL(location.href);
+    const url = new URL(location.href);
+    if (url.searchParams.get("date") !== dateStr) {
       url.searchParams.set("date", dateStr);
       history.replaceState(null, "", url.toString());
     }
